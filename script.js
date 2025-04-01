@@ -1,13 +1,14 @@
-// Global Variables
+// 全局变量
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const navLinks = document.querySelector('.nav-links');
 const navActions = document.querySelector('.nav-actions');
 
-// Mobile Menu Toggle
+
+// 移动菜单切换
 mobileMenuBtn.addEventListener('click', () => {
-    // Create a mobile menu if it doesn't exist
+    // 如果不存在移动菜单，则创建一个
     if (!document.querySelector('.mobile-menu')) {
-        // Create mobile menu container
+        // 创建移动菜单容器
         const mobileMenu = document.createElement('div');
         mobileMenu.classList.add('mobile-menu');
 
@@ -18,10 +19,17 @@ mobileMenuBtn.addEventListener('click', () => {
         const closeBtn = document.createElement('div');
         closeBtn.classList.add('close-btn');
         closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+        // closeBtn.addEventListener('click', () => {
+        //     mobileMenu.classList.remove('active');
+        //     document.body.style.overflow = 'auto';
+        // });
+
         closeBtn.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
+            mobileMenu.style.transform = 'translateX(-100%)'; // 隐藏菜单
             document.body.style.overflow = 'auto';
         });
+
 
         // Append elements to mobile menu
         mobileMenu.appendChild(closeBtn);
@@ -75,11 +83,11 @@ mobileMenuBtn.addEventListener('click', () => {
         actionsContainer.style.gap = '2rem';
     }
 
-    // Toggle the mobile menu
+    // 切换移动菜单
     const mobileMenu = document.querySelector('.mobile-menu');
     mobileMenu.classList.toggle('active');
 
-    // Set styles for active state
+    // 设置活动状态的样式
     if (mobileMenu.classList.contains('active')) {
         mobileMenu.style.transform = 'translateX(0)';
         document.body.style.overflow = 'hidden'; // Prevent scrolling
@@ -336,6 +344,9 @@ function initVideoPlayers() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
+    const searchTrigger = document.getElementById('header-search');
+    const searchOverlay = document.querySelector('.search-overlay');
+    const closeButton = document.getElementById('close-search');
     startCountdown();
     initStickyHeader();
     initProductCards();
@@ -358,12 +369,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Initialize chat widget
-    const chatWidget = document.querySelector('.chat-widget');
-    if (chatWidget) {
-        chatWidget.addEventListener('click', () => {
-            showNotification('Chat feature is not available in this demo.');
-        });
-    }
+    // const chatWidget = document.querySelector('.chat-widget');
+    // if (chatWidget) {
+    //     chatWidget.addEventListener('click', () => {
+    //         showNotification('Chat feature is not available in this demo.');
+    //     });
+    // }
 
     // Add animation to elements when scrolling into view
     const animateOnScroll = () => {
@@ -395,4 +406,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Run once on page load
     animateOnScroll();
+
+
+    // 点击搜索图标显示搜索框
+    searchTrigger.addEventListener('click', (e) => {
+        e.preventDefault(); // 阻止默认链接行为
+        searchOverlay.style.opacity = '1';
+        searchOverlay.style.display = "inline-flex";
+        searchOverlay.style.visibility = 'visible';
+    });
+
+    // 点击关闭按钮隐藏搜索框
+    closeButton.addEventListener('click', () => {
+        searchOverlay.style.opacity = '0';
+        searchOverlay.style.visibility = 'hidden';
+    });
+
+    // 点击遮罩层关闭（排除搜索容器内部的点击）
+    searchOverlay.addEventListener('click', (e) => {
+        // 检查点击是否发生在遮罩层而不是搜索容器内部
+        if (e.target === searchOverlay) {
+            searchOverlay.style.opacity = '0';
+            searchOverlay.style.visibility = 'hidden';
+        }
+    });
+
+    // 按ESC键关闭
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && searchOverlay.style.visibility === 'visible') {
+            searchOverlay.style.opacity = '0';
+            searchOverlay.style.visibility = 'hidden';
+        }
+    });
+
 });
