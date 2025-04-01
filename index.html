@@ -38,7 +38,7 @@
                 <li><a href="./products/support.html">Support</a></li>
             </ul>
             <div class="nav-actions">
-                <a href="#" class="icon-link"><i class="fas fa-search"></i></a>
+                <a href="#" class="icon-link" id="header-search"><i class="fas fa-search"></i></a>
                 <a href="#" class="icon-link"><i class="fas fa-user"></i></a>
                 <a href="./products/cart.html" class="icon-link"><i class="fas fa-shopping-cart"></i></a>
             </div>
@@ -114,7 +114,7 @@
         <h2 class="section-title">BEST SELLER DEALS</h2>
         <div class="product-grid">
             <div class="product-card">
-                <img src="img/product-tent.jpg" alt="Premium Camping Tent">
+                <img src="https://exzbshteqangjyjflhlz.supabase.co/storage/v1/object/public/websitedata//product-tent.jpg" alt="Premium Camping Tent">
                 <h3>Premium Camping Tent</h3>
                 <div class="price">
                     <span class="current-price">$199.99</span>
@@ -123,7 +123,7 @@
                 <button class="add-to-cart">ADD TO CART</button>
             </div>
             <div class="product-card">
-                <img src="./img/backpack.png" alt="Trail Explorer Backpack">
+                <img src="https://exzbshteqangjyjflhlz.supabase.co/storage/v1/object/public/websitedata//backpack.png" alt="Trail Explorer Backpack">
                 <h3>Trail Explorer Backpack</h3>
                 <div class="price">
                     <span class="current-price">$89.99</span>
@@ -132,7 +132,7 @@
                 <button class="add-to-cart">ADD TO CART</button>
             </div>
             <div class="product-card">
-                <img src="./img/wilderness sleeping bag.png" alt="Wilderness Sleeping Bag">
+                <img src="https://exzbshteqangjyjflhlz.supabase.co/storage/v1/object/public/websitedata//Wilderness%20sleeping%20bag.png" alt="Wilderness Sleeping Bag">
                 <h3>Wilderness Sleeping Bag</h3>
                 <div class="price">
                     <span class="current-price">$79.99</span>
@@ -141,7 +141,7 @@
                 <button class="add-to-cart">ADD TO CART</button>
             </div>
             <div class="product-card">
-                <img src="./img/Mountain Trekking Boots.jpg" alt="Mountain Trekking Boots">
+                <img src="https://exzbshteqangjyjflhlz.supabase.co/storage/v1/object/public/websitedata//Mountain%20Trekking%20Boots.jpg" alt="Mountain Trekking Boots">
                 <h3>Mountain Trekking Boots</h3>
                 <div class="price">
                     <span class="current-price">$149.99</span>
@@ -388,14 +388,29 @@
             </div>
         </div>
     </footer>
-
-    <div class="chat-widget">
-        <div class="chat-icon">
-            <i class="fas fa-comments"></i>
+    <!-- 转whatsapp号码 -->
+     <a href="https://wa.me/8613326425565">
+        <div class="chat-widget">
+            <div class="chat-icon">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div class="chat-text">Chat with an Outdoor Expert</div>
         </div>
-        <div class="chat-text">Chat with an Outdoor Expert</div>
-    </div>
+     </a>
 
+    <!-- 搜索框 -->
+    <div id="search-overlay" class="search-overlay active" style="display: none;">
+        <div class="search-container">
+            <div class="search-header">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Search products..." autofocus="">
+                <button id="close-search" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="search-results" id="search-results"><div class="initial-message">Start typing to search products...</div></div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
